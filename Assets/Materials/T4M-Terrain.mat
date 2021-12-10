@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: T4M-Terrain
+  m_Shader: {fileID: 4800000, guid: d7a709473a0c41541aa9caa6c50a49ec, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Control:
+        m_Texture: {fileID: 2800000, guid: 9ddcc5fae082b2248a52a159dd5e9884, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Control2:
+        m_Texture: {fileID: 2800000, guid: 943735b4f6128d44393b49d780378c58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat0:
+        m_Texture: {fileID: 2800000, guid: b4ab5415d99e3ec4b9ede7f37e60cd10, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat1:
+        m_Texture: {fileID: 2800000, guid: 7f3df385222f5b1428f6a156037deb5e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat2:
+        m_Texture: {fileID: 2800000, guid: b499d3b7b341cb6488342f20f269f074, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat3:
+        m_Texture: {fileID: 2800000, guid: 0cc0777f7d4a3444380eb084d74396b5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat4:
+        m_Texture: {fileID: 2800000, guid: b0434c5561a54dc4e8056835794afe31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splat5:
+        m_Texture: {fileID: 2800000, guid: c18e5c9d72fe41649ab8d70606a65d82, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splatmap0:
+        m_Texture: {fileID: 2800000, guid: 5f937e6ef0d74dc45ba2085f1ca8b13d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splatmap1:
+        m_Texture: {fileID: 2800000, guid: 072ba5ed8d627b54a9f146b4eebb0825, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splatmap2:
+        m_Texture: {fileID: 2800000, guid: 54f6388845a4fd945a6def1b0a6873c6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Splatmap3:
+        m_Texture: {fileID: 2800000, guid: e29fed62238933c4d8f4d25922fc9bac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers0:
+        m_Texture: {fileID: 2800000, guid: 9ed04232d998a094e84cd6bf2b6be028, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers1:
+        m_Texture: {fileID: 2800000, guid: 7c255baae0e7b1f4cb978f8690c976a7, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers10:
+        m_Texture: {fileID: 2800000, guid: 04c4acd7719edf041ac1d9912ea2333c, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers11:
+        m_Texture: {fileID: 2800000, guid: e5d9f3f09d96b964f94a4a8e86451803, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers12:
+        m_Texture: {fileID: 2800000, guid: 881c2dfe667d11c44b31e0df215cd6e0, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers13:
+        m_Texture: {fileID: 2800000, guid: 40dc48d4c52789948a5f9db3c86832dc, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers14:
+        m_Texture: {fileID: 2800000, guid: 535e8c66f51122140b3f4e2f296a8a3e, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers15:
+        m_Texture: {fileID: 2800000, guid: 09abc7a818ea3b045aceef193c2c25b7, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers2:
+        m_Texture: {fileID: 2800000, guid: 7d0774e46e68f994f870dcc4dca17faa, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers3:
+        m_Texture: {fileID: 2800000, guid: fd32767d3d83e624e919bc34b73b0e4e, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers4:
+        m_Texture: {fileID: 2800000, guid: a1adac5b2dd062b478cc5b6e2674b87d, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers5:
+        m_Texture: {fileID: 2800000, guid: 2d1a37f7aeba1df45b766435550c061f, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers6:
+        m_Texture: {fileID: 2800000, guid: c700b412038efe54aa5d58ed273982a9, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers7:
+        m_Texture: {fileID: 2800000, guid: d8ee34c8f513a1346b80ac0cd8f85180, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers8:
+        m_Texture: {fileID: 2800000, guid: 2a7667611520df64c83c0cf8fe27427e, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    - _TerrainLayers9:
+        m_Texture: {fileID: 2800000, guid: c9c7794cfe851154ea9f3fd2ea98b79d, type: 3}
+        m_Scale: {x: 8, y: 8}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Gloss: 10
+    m_Colors: []

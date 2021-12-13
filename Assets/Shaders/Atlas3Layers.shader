@@ -72,6 +72,8 @@
             float3 ThreeHorizontalIndices = floor((encodedIndices * 16.0));
             float3 ThreeVerticalIndices = (floor((encodedIndices * 256.0)) - (16.0 * ThreeHorizontalIndices));
 
+            float2 WeightIndicesR = float2((int)ThreeVerticalIndices.x / 4 % 2 * 0.5, (int)ThreeVerticalIndices.x / 4 / 2 * 0.5);
+            int WeightFlagR = (int)ThreeHorizontalIndices.x / 4 % 4;
             float2 WeightIndicesG = float2((int)ThreeVerticalIndices.y / 4 % 2 * 0.5, (int)ThreeVerticalIndices.y / 4 / 2 * 0.5);
             int WeightFlagG = (int)ThreeHorizontalIndices.y / 4 % 4;
             float2 WeightIndicesB = float2((int)ThreeVerticalIndices.z / 4 % 2 * 0.5, (int)ThreeVerticalIndices.z / 4 / 2 * 0.5);
@@ -95,6 +97,7 @@
             float4 col1 = tex2D(_BlockMainTex, uv1, dx, dy);
             float4 col2 = tex2D(_BlockMainTex, uv2, dx, dy);
 
+            float WeightR = GetWeight(tex2D(_BlendWeightTex, IN.uv_BlendWeightTex / 2 + WeightIndicesR), WeightFlagR);
             float WeightG = GetWeight(tex2D(_BlendWeightTex, IN.uv_BlendWeightTex / 2 + WeightIndicesG), WeightFlagG);
             float WeightB = GetWeight(tex2D(_BlendWeightTex, IN.uv_BlendWeightTex / 2 + WeightIndicesB), WeightFlagB);
             
@@ -102,8 +105,9 @@
             //float4 col0 = tex2D(_BlockMainTex, uv0);
             //float4 col1 = tex2D(_BlockMainTex, uv1);
             // Blend the two textures
-            float4 col = col0 * (1 - WeightG - WeightB)
-                +col1 * WeightG
+            float4 col = //float4(WeightR,0,0,0);
+                col0 * WeightR//(1 - WeightG - WeightB)
+            +col1 * WeightG
                 + col2 * WeightB;
             
             o.Albedo = col.rgb;

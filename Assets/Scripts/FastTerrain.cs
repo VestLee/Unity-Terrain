@@ -395,7 +395,7 @@ public class FastTerrain : MonoBehaviour
         WeightArray = new Texture2DArray(alphamapTextureswid, alphamapTextureshei, normalTerrainData.alphamapTextures.Length, TextureFormat.RGBA32, false);
         for (int index = 0; index < normalTerrainData.alphamapTextures.Length; index++)
         {
-            WeightArray.SetPixels(normalTerrainData.alphamapTextures[index].GetPixels(), index, 0);
+            WeightArray.SetPixels32(normalTerrainData.alphamapTextures[index].GetPixels32(), index, 0);
         }
         WeightArray.Apply();
         WeightArray.wrapMode = TextureWrapMode.Clamp;
@@ -417,8 +417,8 @@ public class FastTerrain : MonoBehaviour
         AssetDatabase.CreateAsset(WeightArray, "Assets/Terrain Assets/Texture2DArray/weightArray.asset");
         //AssetDatabase.CreateAsset(albedoArray, Application.dataPath + "/Terrain Assets/Texture2DArray/AlbedoArray.asset");
         //AssetDatabase.CreateAsset(WeightArray, Application.dataPath + "/Terrain Assets/Texture2DArray/weightArray.asset");
-        DestroyImmediate(albedoArray);
-        DestroyImmediate(WeightArray);
+        //DestroyImmediate(albedoArray);
+        //DestroyImmediate(WeightArray);
     }
 
 

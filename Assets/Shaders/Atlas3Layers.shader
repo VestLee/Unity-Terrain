@@ -69,29 +69,26 @@
 
             //Index
             float3 encodedIndices = tex2D(_BlendIDTex, IN.uv_BlendIDTex).xyz;
-            float3 ThreeHorizontalIndices = floor((encodedIndices * 16.0));
-            float3 ThreeVerticalIndices = (floor((encodedIndices * 256.0)) - (16.0 * ThreeHorizontalIndices));
+            int3 ThreeHorizontalIndices = floor((encodedIndices * 16.0));
+            int3 ThreeVerticalIndices = (floor((encodedIndices * 256.0)) - (16.0 * ThreeHorizontalIndices));
 
-            float2 WeightIndicesR = float2((int)ThreeVerticalIndices.x / 4 % 2 * 0.5, (int)ThreeVerticalIndices.x / 4 / 2 * 0.5);
-            int WeightFlagR = (int)ThreeHorizontalIndices.x / 4 % 4;
-            float2 WeightIndicesG = float2((int)ThreeVerticalIndices.y / 4 % 2 * 0.5, (int)ThreeVerticalIndices.y / 4 / 2 * 0.5);
-            int WeightFlagG = (int)ThreeHorizontalIndices.y / 4 % 4;
-            float2 WeightIndicesB = float2((int)ThreeVerticalIndices.z / 4 % 2 * 0.5, (int)ThreeVerticalIndices.z / 4 / 2 * 0.5);
-            int WeightFlagB = (int)ThreeHorizontalIndices.z / 4 % 4;
+            float2 WeightIndicesR = float2(ThreeVerticalIndices.x / 4 % 2 * 0.5, ThreeVerticalIndices.x / 4 / 2 * 0.5);
+            int WeightFlagR = ThreeHorizontalIndices.x / 4 % 4;
+            float2 WeightIndicesG = float2((int)ThreeVerticalIndices.y / 4 % 2 * 0.5, ThreeVerticalIndices.y / 4 / 2 * 0.5);
+            int WeightFlagG = ThreeHorizontalIndices.y / 4 % 4;
+            float2 WeightIndicesB = float2(ThreeVerticalIndices.z / 4 % 2 * 0.5, ThreeVerticalIndices.z / 4 / 2 * 0.5);
+            int WeightFlagB = ThreeHorizontalIndices.z / 4 % 4;
 
-            ThreeHorizontalIndices = floor(ThreeHorizontalIndices / 4) * 0.25;
-            ThreeVerticalIndices = floor(ThreeVerticalIndices / 4) * 0.25;
-            //
+            float3 ThreeHorizontalDecodedIndices = floor(ThreeHorizontalIndices / 4) * 0.25;
+            float3 ThreeVerticalDecodedIndices = floor(ThreeVerticalIndices / 4) * 0.25;
 
-            //
             float2 worldScale = (IN.worldPos.xz * _BlockScale);
-            //float2 worldUv = 0.25 * frac(worldScale);
             float2 worldUv = 0.234375 * frac(worldScale) + 0.0078125;
             float2 dx = clamp(0.234375 * ddx(worldScale), -0.0078125, 0.0078125);
             float2 dy = clamp(0.234375 * ddy(worldScale), -0.0078125, 0.0078125);
-            float2 uv0 = worldUv.xy + float2(ThreeHorizontalIndices.x, ThreeVerticalIndices.x);
-            float2 uv1 = worldUv.xy + float2(ThreeHorizontalIndices.y, ThreeVerticalIndices.y);
-            float2 uv2 = worldUv.xy + float2(ThreeHorizontalIndices.z, ThreeVerticalIndices.z);
+            float2 uv0 = worldUv.xy + float2(ThreeHorizontalDecodedIndices.x, ThreeVerticalDecodedIndices.x);
+            float2 uv1 = worldUv.xy + float2(ThreeHorizontalDecodedIndices.y, ThreeVerticalDecodedIndices.y);
+            float2 uv2 = worldUv.xy + float2(ThreeHorizontalDecodedIndices.z, ThreeVerticalDecodedIndices.z);
             // Sample the two texture
             float4 col0 = tex2D(_BlockMainTex, uv0, dx, dy);
             float4 col1 = tex2D(_BlockMainTex, uv1, dx, dy);
@@ -105,10 +102,7 @@
             //float4 col0 = tex2D(_BlockMainTex, uv0);
             //float4 col1 = tex2D(_BlockMainTex, uv1);
             // Blend the two textures
-            float4 col = //float4(WeightR,0,0,0);
-                col0 * WeightR//(1 - WeightG - WeightB)
-            +col1 * WeightG
-                + col2 * WeightB;
+            float4 col = col0 * (1 - WeightG - WeightB) + col1 * WeightG + col2 * WeightB;
             
             o.Albedo = col.rgb;
             o.Alpha = col.a;

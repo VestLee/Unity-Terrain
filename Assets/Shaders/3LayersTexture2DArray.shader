@@ -52,7 +52,7 @@
             //Index
             float3 encodedIndices = tex2D(_BlendIDTex, IN.uv_BlendIDTex).xyz;
             int3 ThreeHorizontalIndices = floor(encodedIndices * 16.0);
-            int3 ThreeVerticalIndices = (floor((encodedIndices * 256.0)) - (16.0 * ThreeHorizontalIndices));
+            int3 ThreeVerticalIndices = floor((encodedIndices * 256.0)) - (16.0 * ThreeHorizontalIndices);
 
             float3 BlockMainTexIndex;
             BlockMainTexIndex.x = float(ThreeVerticalIndices.x + ThreeHorizontalIndices.x / 4);
@@ -78,12 +78,8 @@
 
             // Blend the two textures
             float4 col = col0 * (1 - WeightG - WeightB) + col1 * WeightG + col2 * WeightB;
-            //float4 col = float4(WeightR, 0, 0, 0);
-                //col0 * WeightR;
-                //+ col1 * WeightG; 
-                //+ col2 * WeightB;
 
-            o.Albedo = col.rgb; //* WeightG;
+            o.Albedo = col.rgb; 
             o.Alpha = col.a;
         }
         ENDCG

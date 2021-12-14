@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SplatMapsTexArr:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 18700000, guid: eb6694f48cd48a4448ff0f53cc50d72e, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Textures:

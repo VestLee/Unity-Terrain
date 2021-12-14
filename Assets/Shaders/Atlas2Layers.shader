@@ -66,9 +66,7 @@
             decodedIndices.z = twoHorizontalIndices.y;
             decodedIndices.w = twoVerticalIndices.y;
             decodedIndices = floor(decodedIndices/4)*0.25;
-            //
 
-            //
             float blendRatio = tex2D(_BlendTex, IN.uv_BlendTex).z;
             float2 worldScale = (IN.worldPos.xz * _BlockScale);
             //float2 worldUv = 0.25 * frac(worldScale);

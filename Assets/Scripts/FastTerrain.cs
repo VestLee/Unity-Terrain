@@ -219,17 +219,13 @@ public class FastTerrain : MonoBehaviour
 
                 splatDatas.Sort((x, y) => -(x.weight).CompareTo(y.weight));
                 splatIDColors[index].r = (byte)(((splatDatas[0].id % 4 * 4) << 4) + (splatDatas[0].id / 4 * 4));
-                //Debug.Log(splatIDColors[index].r);
-                splatWeightColors[index].r = splatDatas[0].weight;// / (splatDatas[0].weight + splatDatas[1].weight);
-                //Debug.Log("行：" + i + "、列：" + j + "、id：" + splatDatas[0].id + "、weight：" + splatWeightColors[index].r);
+                splatWeightColors[index].r = splatDatas[0].weight;
 
                 splatDatas.Sort((x, y) => -(x.weight + x.nearWeight / 2).CompareTo(y.weight + y.nearWeight / 2));
                 splatIDColors[index].g = (byte)(((splatDatas[0].id % 4 * 4) << 4) + (splatDatas[0].id / 4 * 4));
 
                 if (splatIDColors[index].r == splatIDColors[index].g)
                     splatIDColors[index].g = (byte)(((splatDatas[1].id % 4 * 4) << 4) + (splatDatas[1].id / 4 * 4));
-                //Debug.Log("ID:" + splatDatas[0].id + "& Weight:" + splatDatas[0].weight + "," + "ID:" + splatDatas[1].id + "& Weight:" + splatDatas[1].weight + ","+ "ID:" + splatDatas[2].id + "& Weight:" + splatDatas[2].weight + ","+ "ID:" + splatDatas[3].id + "& Weight:" + splatDatas[3].weight );
-                //Debug.Log("行：" + i + "、列：" + j + "、id：" + splatDatas[0].id + " or" + splatDatas[1].id);
                 splatIDColors[index].b = 0;
                 splatWeightColors[index].g = splatWeightColors[index].b = 0;
 
@@ -259,22 +255,6 @@ public class FastTerrain : MonoBehaviour
                     splatIDColors[index].g = tmp;
                     splatWeightColors[index].r = 1 - splatWeightColors[index].r;
                 }
-                //只存最重要2个图层 用一点压缩方案可以一张图存更多图层 ,这里最多支持16张
-                //Debug.Log(splatDatas[0].id + " & " + splatDatas[1].id + " Swap " + splatDatas[swapID].id + " & " + splatDatas[1 - swapID].id);
-
-                //splatWeightColors[index].r = splatDatas[swapID].weight;
-                //splatWeightColors[index].r = splatDatas[swapID].weight > 0.5 ? splatDatas[swapID].weight : 1 - splatDatas[swapID].weight;
-                //splatWeightColors[index].r = splatDatas[swapID].weight + (1 - splatDatas[0].weight - splatDatas[1].weight) / 2; //2张以后丢弃的权重平均加到这2张
-
-
-                //只存最重要2个图层 用一点压缩方案可以一张图存更多图层 ,这里最多支持16张
-                //splatIDColors[index].r = 1/ 16f; //
-                //splatIDColors[index].g = 1 / 16f;
-                //splatIDColors[index].b = 0;
-                //splatWeightColors[index].r = 0.6f;//2张以后丢弃的权重平均加到这2张
-                //splatWeightColors[index].g = splatWeightColors[index].b = 0;
-
-                //Debug.Log("ID:" + splatDatas[0].id + "," + splatDatas[1].id + ",Weight:" + splatDatas[0].weight + ",color:" + splatIDColors[index]);
             }
         }
 

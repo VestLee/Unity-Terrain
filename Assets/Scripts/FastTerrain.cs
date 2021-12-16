@@ -153,8 +153,8 @@ public class FastTerrain : MonoBehaviour
                 splatDatas.Sort((x, y) => -(x.weight).CompareTo(y.weight));
 
                 splatIDColors[index].r = (byte)(((splatDatas[0].id % 4 * 4) << 4) + (splatDatas[0].id / 4 * 4));
-                splatIDColors[index].g = (byte)(((splatDatas[0].id % 4 * 4) << 4) + (splatDatas[0].id / 4 * 4));
-                splatIDColors[index].b = splatDatas[0].weight > 0.5 ? (byte)(splatDatas[0].weight * 256) : (byte)(((1 - splatDatas[0].weight) * 256));
+                splatIDColors[index].g = (byte)(((splatDatas[1].id % 4 * 4) << 4) + (splatDatas[1].id / 4 * 4));
+                splatIDColors[index].b = splatDatas[0].weight > 0.5 ? (byte)(splatDatas[0].weight * 255) : (byte)(((1 - splatDatas[0].weight) * 255));
                 //Debug.Log("ID:" + splatDatas[0].id + "," + splatDatas[1].id + ",Weight:" + splatDatas[0].weight + ",color:" + splatIDColors[index]);
             }
         }
@@ -384,17 +384,22 @@ public class FastTerrain : MonoBehaviour
 
         int terrainLayerwid = normalTerrainData.terrainLayers[0].diffuseTexture.width;
         int terrainLayerhei = normalTerrainData.terrainLayers[0].diffuseTexture.height;
-        albedoArray = new Texture2DArray(terrainLayerwid, terrainLayerhei, normalTerrainData.terrainLayers.Length, TextureFormat.RGBA32, false);
+        albedoArray = new Texture2DArray(terrainLayerwid, terrainLayerhei, normalTerrainData.terrainLayers.Length, TextureFormat.RGBA32,true, false);
         for (int index = 0; index < normalTerrainData.terrainLayers.Length; index++)
         {
-            albedoArray.SetPixels(normalTerrainData.terrainLayers[index].diffuseTexture.GetPixels(), index, 0);
+            //albedoArray.SetPixels(normalTerrainData.terrainLayers[index].diffuseTexture.GetPixels(), index, 0);
+            for(int i=0;i< normalTerrainData.terrainLayers[index].diffuseTexture.mipmapCount; i++)
+            {
+                Graphics.CopyTexture(normalTerrainData.terrainLayers[index].diffuseTexture, 0, i, albedoArray, index, i);
+            }
         }
-        albedoArray.Apply();
-        albedoArray.wrapMode = TextureWrapMode.Clamp;
+        //albedoArray.Apply();
+        albedoArray.wrapMode = TextureWrapMode.Repeat;
         albedoArray.filterMode = FilterMode.Bilinear;
 
         AssetDatabase.CreateAsset(albedoArray, "Assets/Terrain Assets/Texture2DArray/AlbedoArray.asset");
         AssetDatabase.CreateAsset(WeightArray, "Assets/Terrain Assets/Texture2DArray/weightArray.asset");
+
         //AssetDatabase.CreateAsset(albedoArray, Application.dataPath + "/Terrain Assets/Texture2DArray/AlbedoArray.asset");
         //AssetDatabase.CreateAsset(WeightArray, Application.dataPath + "/Terrain Assets/Texture2DArray/weightArray.asset");
         //DestroyImmediate(albedoArray);
